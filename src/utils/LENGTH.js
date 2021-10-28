@@ -1,0 +1,28 @@
+export const MAX_LENGTH_STORE_URL = 25;
+export const MIN_LENGTH_STORE_URL = 3;
+
+export const MAX_LENGTH_STORE_NAME = 25;
+export const MIN_LENGTH_STORE_NAME = 3;
+
+export const MAX_LENGTH_STORE_DESCRIPTION = 100;
+
+export const MAX_LENGTH_STORE_LOCATION = 100;
+
+export const MAX_LENGTH_PASSWORD = 30;
+export const MIN_LENGTH_PASSWORD = 8;
+
+export const MAX_LENGTH_EMAIL = 50;
+export const MIN_LENGTH_EMAIL = 10;
+
+export const MAX_LENGTH_LINK_TITLE = 50;
+export const MIN_LENGTH_LINK_TITLE = 3;
+
+export const MAX_LENGTH_CATALOG_ITEM_NAME = 50;
+export const MIN_LENGTH_CATALOG_ITEM_NAME = 3;
+
+export const MAX_NUMBER_CATALOG_ITEM_PRICE = 1000000000;
+export const MIN_NUMBER_CATALOG_ITEM_PRICE = 0;
+export const MAX_NUMBER_CATALOG_ITEM_PRICE_LABEL = '1 000 000 000';
+
+export const MAX_LENGTH_CATALOG_HEADER_TITLE = 25;
+export const MIN_LENGTH_CATALOG_HEADER_TITLE = 3;

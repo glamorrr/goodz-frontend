@@ -1,19 +1,31 @@
 {
-  "name": "try-react",
+  "name": "goodz-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^1.6.10",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
+    "framer-motion": "^4.1.17",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
+    "react-dropzone": "^11.4.2",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "swr": "^1.0.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "serve": "npx serve -s -p 3000 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
