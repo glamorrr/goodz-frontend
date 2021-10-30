@@ -141,6 +141,7 @@ const IdentitySection = () => {
               placeholder="Name"
               value={formData.name}
               onChange={handleChange}
+              isDisabled={isLoading}
             />
           </FormControl>
           <FormControl>
@@ -609,12 +610,16 @@ const BackgroundSection = () => {
 const SettingsSection = () => {
   const { user, mutate } = useUser();
   const [isCredit, setIsCredit] = useState(user.isCredit);
+  const [isLoadingIsCredit, setIsLoadingIsCredit] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState(user.currencyCode);
+  const [isLoadingSelectedCurrency, setIsLoadingSelectedCurrency] =
+    useState(false);
   const toast = useToast();
 
   useEffect(() => {
     (async () => {
       if (isCredit !== user.isCredit) {
+        setIsLoadingIsCredit(true);
         try {
           await mutate(async (prev) => {
             const res = await axios.put(`/store/is_credit`, { isCredit });
@@ -630,6 +635,8 @@ const SettingsSection = () => {
         } catch (err) {
           toast(handleError(err));
           setIsCredit(user.isCredit);
+        } finally {
+          setIsLoadingIsCredit(false);
         }
       }
     })();
@@ -638,6 +645,7 @@ const SettingsSection = () => {
   useEffect(() => {
     (async () => {
       if (selectedCurrency !== user.currencyCode) {
+        setIsLoadingSelectedCurrency(true);
         try {
           await mutate(async (prev) => {
             const res = await axios.put(`/store/currency`, {
@@ -655,6 +663,8 @@ const SettingsSection = () => {
         } catch (err) {
           toast(handleError(err));
           setSelectedCurrency(user.currencyCode);
+        } finally {
+          setIsLoadingSelectedCurrency(false);
         }
       }
     })();
@@ -683,6 +693,7 @@ const SettingsSection = () => {
           name="isCredit"
           size="lg"
           colorScheme="teal"
+          isDisabled={isLoadingIsCredit}
         />
       </Flex>
       <Box w="full">
@@ -693,6 +704,7 @@ const SettingsSection = () => {
             maxW="300px"
             onChange={(e) => setSelectedCurrency(e.target.value)}
             value={selectedCurrency}
+            isDisabled={isLoadingSelectedCurrency}
           >
             {Object.keys(CURRENCY)
               .map((countryCode) => ({

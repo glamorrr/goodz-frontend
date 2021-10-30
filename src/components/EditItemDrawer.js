@@ -41,11 +41,12 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
     throw new Error('Please pass isOpen, onClose prop to EditItemDrawer');
   }
 
-  const [formData, setFormData] = useState({
+  const initialData = {
     name: item.name,
     price: item.price,
     isHide: !item.isVisible,
-  });
+  };
+  const [formData, setFormData] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const firstField = useRef();
@@ -155,7 +156,10 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
       isOpen={isOpen}
       placement="right"
       initialFocusRef={firstField}
-      onClose={onClose}
+      onClose={() => {
+        onClose();
+        setFormData(initialData);
+      }}
     >
       <DrawerOverlay />
       <DrawerContent>
@@ -187,6 +191,7 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
                   placeholder="Name"
                   value={formData.name}
                   onChange={handleChange}
+                  isDisabled={isLoading}
                 />
                 <FormHelperText>
                   Name must be {MIN_LENGTH_CATALOG_ITEM_NAME} to{' '}
@@ -206,6 +211,7 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
                     placeholder="Price"
                     value={formData.price}
                     onChange={handleChange}
+                    isDisabled={isLoading}
                   >
                     <NumberInputField />
                   </NumberInput>
@@ -238,6 +244,7 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
                     name="isHide"
                     ml={2}
                     colorScheme="teal"
+                    isDisabled={isLoading}
                   />
                 </FormControl>
               </Flex>

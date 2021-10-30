@@ -89,6 +89,7 @@ const SignupForm = () => {
             name="email"
             placeholder="Email"
             type="email"
+            isDisabled={isLoading}
           />
         </FormControl>
         <FormControl id="name" w="full" isRequired>
@@ -105,6 +106,7 @@ const SignupForm = () => {
             name="name"
             placeholder="Name"
             type="text"
+            isDisabled={isLoading}
           />
         </FormControl>
         <FormControl id="url" w="full" isRequired>
@@ -130,6 +132,7 @@ const SignupForm = () => {
               name="url"
               placeholder="yourstore"
               type="text"
+              isDisabled={isLoading}
             />
           </InputGroup>
           <FormHelperText>
@@ -150,6 +153,7 @@ const SignupForm = () => {
             value={formData.password}
             name="password"
             placeholder="Password"
+            isDisabled={isLoading}
           />
           <FormHelperText>
             Password must be {MIN_LENGTH_PASSWORD} to {MAX_LENGTH_PASSWORD}{' '}
@@ -164,6 +168,7 @@ const SignupForm = () => {
             value={formData.confirmPassword}
             name="confirmPassword"
             placeholder="Confirm password"
+            isDisabled={isLoading}
           />
         </FormControl>
       </VStack>

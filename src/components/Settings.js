@@ -13,14 +13,12 @@ import {
   VStack,
   Text,
   Flex,
-  Spinner,
   FormHelperText,
   Box,
   FormControl,
   FormLabel,
   Input,
   useDisclosure,
-  Center,
   Heading,
   useToast,
 } from '@chakra-ui/react';
@@ -109,6 +107,7 @@ const AccountSection = () => {
                 placeholder="Name"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                isDisabled={isLoading}
               />
             </InputGroup>
           </FormControl>
@@ -182,38 +181,32 @@ const LogoutSection = () => {
           <ModalHeader>Logout</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {isLoading ? (
-              <Center mt={6} mb={12}>
-                <Spinner size="xl" />{' '}
-              </Center>
-            ) : (
-              <Text>Are you sure?</Text>
-            )}
+            <Text>Are you sure?</Text>
           </ModalBody>
-          {!isLoading && (
-            <ModalFooter mt={6} p={0} display="flex" overflow="hidden">
-              <Button
-                variant="solid"
-                w="full"
-                colorScheme="gray"
-                onClick={onClose}
-                roundedTop="none"
-                roundedBottomRight="none"
-              >
-                Cancel
-              </Button>
-              <Button
-                variant="ghost"
-                w="full"
-                colorScheme="gray"
-                roundedTop="none"
-                roundedBottomLeft="none"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
-            </ModalFooter>
-          )}
+          <ModalFooter mt={6} p={0} display="flex" overflow="hidden">
+            <Button
+              variant="solid"
+              w="full"
+              colorScheme="gray"
+              onClick={onClose}
+              roundedTop="none"
+              roundedBottomRight="none"
+              isDisabled={isLoading}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="ghost"
+              w="full"
+              colorScheme="gray"
+              roundedTop="none"
+              roundedBottomLeft="none"
+              onClick={handleLogout}
+              isLoading={isLoading}
+            >
+              Logout
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
@@ -294,6 +287,7 @@ const DeleteAccountSection = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                   placeholder="Password"
+                  isDisabled={isLoading}
                 />
                 <FormHelperText>
                   Insert your password to delete your account. If you click
@@ -310,6 +304,7 @@ const DeleteAccountSection = () => {
               onClick={handleClose}
               roundedTop="none"
               roundedBottomRight="none"
+              isDisabled={isLoading}
             >
               Cancel
             </Button>

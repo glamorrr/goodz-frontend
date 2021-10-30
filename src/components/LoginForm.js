@@ -61,6 +61,7 @@ const LoginForm = () => {
             name="email"
             placeholder="Email"
             type="email"
+            isDisabled={isLoading}
           />
         </FormControl>
         <FormControl id="password" w="full" isRequired>
@@ -71,6 +72,7 @@ const LoginForm = () => {
             value={formData.password}
             name="password"
             placeholder="Password"
+            isDisabled={isLoading}
           />
         </FormControl>
       </VStack>

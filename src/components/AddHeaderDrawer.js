@@ -106,6 +106,7 @@ const AddItemDrawer = ({ isOpen = null, onClose = null }) => {
                 placeholder="Title"
                 value={formData.title}
                 onChange={handleChange}
+                isDisabled={isLoading}
               />
               <FormHelperText>
                 Title must be {MIN_LENGTH_CATALOG_HEADER_TITLE} to{' '}

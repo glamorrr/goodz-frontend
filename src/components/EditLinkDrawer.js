@@ -30,11 +30,12 @@ const EditLinkDrawer = ({ isOpen = null, onClose = null, link = null }) => {
     throw new Error('Please pass isOpen, onClose prop to EditLinkDrawer');
   }
 
-  const [formData, setFormData] = useState({
+  const initialData = {
     title: link.title,
     href: link.href,
     isHide: !link.isVisible,
-  });
+  };
+  const [formData, setFormData] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const firstField = useRef();
@@ -130,7 +131,10 @@ const EditLinkDrawer = ({ isOpen = null, onClose = null, link = null }) => {
       isOpen={isOpen}
       placement="right"
       initialFocusRef={firstField}
-      onClose={onClose}
+      onClose={() => {
+        onClose();
+        setFormData(initialData);
+      }}
     >
       <DrawerOverlay />
       <DrawerContent>
@@ -162,6 +166,7 @@ const EditLinkDrawer = ({ isOpen = null, onClose = null, link = null }) => {
                   placeholder="Title"
                   value={formData.title}
                   onChange={handleChange}
+                  isDisabled={isLoading}
                 />
                 <FormHelperText>
                   Title must be {MIN_LENGTH_LINK_TITLE} to{' '}
@@ -177,6 +182,7 @@ const EditLinkDrawer = ({ isOpen = null, onClose = null, link = null }) => {
                     placeholder="https://example.com"
                     value={formData.href}
                     onChange={handleChange}
+                    isDisabled={isLoading}
                   />
                 </InputGroup>
                 <FormHelperText>
@@ -205,6 +211,7 @@ const EditLinkDrawer = ({ isOpen = null, onClose = null, link = null }) => {
                     name="isHide"
                     ml={2}
                     colorScheme="teal"
+                    isDisabled={isLoading}
                   />
                 </FormControl>
               </Flex>

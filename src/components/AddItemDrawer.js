@@ -121,6 +121,7 @@ const AddItemDrawer = ({ isOpen = null, onClose = null }) => {
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleChange}
+                isDisabled={isLoading}
               />
               <FormHelperText>
                 Name must be {MIN_LENGTH_CATALOG_ITEM_NAME} to{' '}
@@ -140,6 +141,7 @@ const AddItemDrawer = ({ isOpen = null, onClose = null }) => {
                   placeholder="Price"
                   value={formData.price}
                   onChange={handleChange}
+                  isDisabled={isLoading}
                 >
                   <NumberInputField />
                 </NumberInput>

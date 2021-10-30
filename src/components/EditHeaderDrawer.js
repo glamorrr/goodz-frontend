@@ -32,10 +32,11 @@ const EditHeaderDrawer = ({ isOpen = null, onClose = null, header = null }) => {
     throw new Error('Please pass isOpen, onClose prop to EditHeaderDrawer');
   }
 
-  const [formData, setFormData] = useState({
+  const initialData = {
     title: header.title,
     isHide: !header.isVisible,
-  });
+  };
+  const [formData, setFormData] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const firstField = useRef();
@@ -138,7 +139,10 @@ const EditHeaderDrawer = ({ isOpen = null, onClose = null, header = null }) => {
       isOpen={isOpen}
       placement="right"
       initialFocusRef={firstField}
-      onClose={onClose}
+      onClose={() => {
+        onClose();
+        setFormData(initialData);
+      }}
     >
       <DrawerOverlay />
       <DrawerContent>
@@ -170,6 +174,7 @@ const EditHeaderDrawer = ({ isOpen = null, onClose = null, header = null }) => {
                   placeholder="Title"
                   value={formData.title}
                   onChange={handleChange}
+                  isDisabled={isLoading}
                 />
                 <FormHelperText>
                   Title must be {MIN_LENGTH_CATALOG_HEADER_TITLE} to{' '}
@@ -198,6 +203,7 @@ const EditHeaderDrawer = ({ isOpen = null, onClose = null, header = null }) => {
                     name="isHide"
                     ml={2}
                     colorScheme="teal"
+                    isDisabled={isLoading}
                   />
                 </FormControl>
               </Flex>

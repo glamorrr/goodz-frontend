@@ -104,6 +104,7 @@ const AddLinkDrawer = ({ isOpen = null, onClose = null }) => {
                 placeholder="Title"
                 value={formData.title}
                 onChange={handleChange}
+                isDisabled={isLoading}
               />
               <FormHelperText>
                 Title must be {MIN_LENGTH_LINK_TITLE} to {MAX_LENGTH_LINK_TITLE}{' '}
@@ -119,6 +120,7 @@ const AddLinkDrawer = ({ isOpen = null, onClose = null }) => {
                   placeholder="https://example.com"
                   value={formData.href}
                   onChange={handleChange}
+                  isDisabled={isLoading}
                 />
               </InputGroup>
               <FormHelperText>
