@@ -158,6 +158,7 @@ const IdentitySection = () => {
               placeholder="Description"
               value={formData.description}
               onChange={handleChange}
+              isDisabled={isLoading}
             />
           </FormControl>
           <FormControl>
@@ -174,6 +175,7 @@ const IdentitySection = () => {
               placeholder="Location"
               value={formData.location}
               onChange={handleChange}
+              isDisabled={isLoading}
             />
           </FormControl>
         </VStack>
