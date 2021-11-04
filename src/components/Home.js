@@ -16,15 +16,12 @@ const Home = () => {
             <Text mt={6}>
               Create a website page for your store. You can list all of your
               goods with just one link. Suitable to include in your social media
-              bio. It's free.
+              bio. It's free. To provide this service we will display ads
+              without interrupting your content.
             </Text>
             <Text mt={4}>
               If there is something you want to talk about, contact us at{' '}
-              <Text
-                as="span"
-                bgGradient="linear(to-r, brand.green.100, brand.blue.100)"
-                bgClip="text"
-              >
+              <Text as="span" bg="gray.900" color="white">
                 hi@goodz.id
               </Text>
               .

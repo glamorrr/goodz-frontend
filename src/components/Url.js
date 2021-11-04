@@ -68,13 +68,16 @@ const Url = () => {
 
       {store.background && (
         <AspectRatio height="300px" w="full" overflow="hidden">
-          <Image
-            objectFit="cover"
-            objectPosition="bottom"
-            bg={store.background.color}
-            src={`${process.env.REACT_APP_IMAGE_URL}/${store.background.path}`}
-            alt={store.name}
-          />
+          <>
+            <Image
+              objectFit="cover"
+              objectPosition="bottom"
+              bg={store.background.color}
+              src={`${process.env.REACT_APP_IMAGE_URL}/${store.background.path}`}
+              alt={store.name}
+            />
+            <Box backgroundImage="linear-gradient(rgba(6, 13, 34, 0) 20%, rgba(6, 13, 34, 0.6))" />
+          </>
         </AspectRatio>
       )}
       <Box
@@ -89,7 +92,7 @@ const Url = () => {
             alignItems="center"
             maxW="320px"
             bg={'white'}
-            shadow={store.background ? 'base' : 'none'}
+            shadow={store.background ? 'sm' : 'none'}
             p={store.background ? 9 : 2}
             rounded="md"
           >
@@ -110,7 +113,7 @@ const Url = () => {
                 />
               </Center>
             )}
-            <Heading as="h1" fontSize="2xl" textAlign="center">
+            <Heading as="h1" fontSize="xl" textAlign="center">
               {store.name}
             </Heading>
           </VStack>
@@ -166,7 +169,8 @@ const Url = () => {
         {Boolean(store.catalog.length) && (
           <Container maxW="container.lg" centerContent my={12}>
             <Grid
-              gap={{ base: '32px', lg: '48px' }}
+              gap={{ base: '32px' }}
+              columnGap={{ lg: '48px' }}
               w="full"
               templateColumns={{ sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
             >
@@ -225,7 +229,14 @@ const Url = () => {
                       key={id}
                       colSpan={{ sm: 2, md: 3 }}
                     >
-                      <Heading>{header.title}</Heading>
+                      <Heading
+                        fontSize="2xl"
+                        paddingBottom={2}
+                        borderBottom="1px solid"
+                        borderColor="gray.900"
+                      >
+                        {header.title}
+                      </Heading>
                     </GridItem>
                   );
                 }

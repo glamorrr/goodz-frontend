@@ -273,7 +273,7 @@ const Catalog = () => {
         </Button>
         <Button
           variant="outline"
-          colorScheme="blue"
+          colorScheme="gray"
           onClick={onOpenHeader}
           flexGrow={1}
           px={10}

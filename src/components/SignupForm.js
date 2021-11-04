@@ -118,12 +118,7 @@ const SignupForm = () => {
           </Flex>
           <InputGroup>
             <InputLeftAddon>
-              <Text
-                bgGradient="linear(to-r, brand.green.100, brand.blue.100)"
-                bgClip="text"
-              >
-                goodz.id/
-              </Text>
+              <Text color="blue.500">goodz.id/</Text>
             </InputLeftAddon>
             <Input
               value={formData.url}

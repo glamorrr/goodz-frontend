@@ -48,7 +48,6 @@ const Signup = () => {
               to="/login"
               textDecoration="underline"
               fontWeight="bold"
-              _hover={{ color: 'teal.500' }}
             >
               Login
             </Link>

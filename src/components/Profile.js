@@ -694,7 +694,6 @@ const SettingsSection = () => {
           isChecked={isCredit}
           name="isCredit"
           size="lg"
-          colorScheme="teal"
           isDisabled={isLoadingIsCredit}
         />
       </Flex>

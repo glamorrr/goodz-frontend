@@ -8,26 +8,17 @@ const theme = extendTheme({
   },
   colors: {
     brand: {
-      gray: '#f2f2f2',
-      // gray: '#F9F9F9',
-      green: { 100: '#34D399' },
-      blue: { 100: '#60A5FA' },
-      gradient: {
-        100: 'linear-gradient(90deg, #34D399 0%, #60A5FA 100%)',
-        hover: 'linear-gradient(-90deg, #34D399 0%, #60A5FA 100%)',
-      },
+      gray: '#F7F0EA',
     },
   },
   components: {
     Button: {
-      // The styles all button have in common
       baseStyle: {
-        borderRadius: 'base', // <-- border radius is same for all variants and sizes
+        borderRadius: 'base',
         borderWidth: '1px',
         borderStyle: 'solid',
         borderColor: 'transparent',
       },
-      // Two sizes: sm and md
       sizes: {
         md: {
           fontSize: 'md',
@@ -37,8 +28,7 @@ const theme = extendTheme({
       },
       variants: {
         filled: {
-          borderColor: 'transparent',
-          color: 'brand.green.100',
+          color: 'brand.gray.900',
           bg: 'gray.50',
           _hover: {
             bg: 'gray.100',
@@ -48,21 +38,19 @@ const theme = extendTheme({
           },
         },
         primary: {
-          bg: 'brand.gradient.100',
-          border: 'none',
+          bg: 'gray.900',
+          borderColor: 'gray.900',
           color: 'white',
           _hover: {
-            bg: 'brand.gradient.hover',
+            bg: 'gray.100',
+            color: 'gray.900',
             _disabled: {
-              bg: 'brand.gradient.100',
+              bg: 'gray.900',
+              color: 'white',
             },
           },
           _active: {
-            bg: 'gray.200',
-            color: 'brand.green.100',
-            _disabled: {
-              color: 'white',
-            },
+            bg: 'gray.300',
           },
         },
         storeLink: {

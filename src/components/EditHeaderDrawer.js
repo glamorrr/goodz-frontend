@@ -202,7 +202,6 @@ const EditHeaderDrawer = ({ isOpen = null, onClose = null, header = null }) => {
                     isChecked={formData.isHide}
                     name="isHide"
                     ml={2}
-                    colorScheme="teal"
                     isDisabled={isLoading}
                   />
                 </FormControl>

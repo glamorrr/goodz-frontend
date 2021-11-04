@@ -243,7 +243,6 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
                     isChecked={formData.isHide}
                     name="isHide"
                     ml={2}
-                    colorScheme="teal"
                     isDisabled={isLoading}
                   />
                 </FormControl>

@@ -68,11 +68,13 @@ const DashboardLayout = ({ children }) => {
               as={ReactRouterLink}
               to={`/${user.url}`}
               display="block"
-              bgGradient="linear(to-r, brand.green.100, brand.blue.100)"
-              bgClip="text"
+              color="gray.900"
               fontWeight="bold"
-              textDecoration="underline"
               target="_blank"
+              _hover={{
+                textDecoration: 'none',
+                bg: 'gray.200',
+              }}
             >
               {user ? `goodz.id/${user.url}` : 'goodz.id'}
             </Link>
@@ -82,7 +84,7 @@ const DashboardLayout = ({ children }) => {
               fontSize="30px"
               ml={3}
               onClick={handleCopy}
-              color="brand.blue.100"
+              color="gray.900"
               icon={<Icon as={HiOutlineDuplicate} />}
             />
           </Flex>
