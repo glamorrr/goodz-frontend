@@ -2,6 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Box } from '@chakra-ui/react';
 import Url from './components/Url';
+import Body from './components/Body';
 
 const Home = lazy(() => import('./components/Home'));
 const Login = lazy(() => import('./components/Login'));
@@ -15,22 +16,30 @@ const App = () => {
     <Switch>
       <Route path="/" exact>
         <Suspense fallback={<DefaultFallback />}>
-          <Home />
+          <Body>
+            <Home />
+          </Body>
         </Suspense>
       </Route>
       <Route path="/signup" exact>
         <Suspense fallback={<DefaultFallback />}>
-          <Signup />
+          <Body>
+            <Signup />
+          </Body>
         </Suspense>
       </Route>
       <Route path="/login" exact>
         <Suspense fallback={<DefaultFallback />}>
-          <Login />
+          <Body>
+            <Login />
+          </Body>
         </Suspense>
       </Route>
       <Route path="/dashboard">
         <Suspense fallback={<DefaultFallback />}>
-          <Dashboard />
+          <Body>
+            <Dashboard />
+          </Body>
         </Suspense>
       </Route>
       <Route path="/:url" exact>
