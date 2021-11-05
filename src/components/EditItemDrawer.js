@@ -45,6 +45,7 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
     name: item.name,
     price: item.price,
     isHide: !item.isVisible,
+    href: item.href || '',
   };
   const [formData, setFormData] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
@@ -58,6 +59,7 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
     e.preventDefault();
     setIsLoading(true);
     const { name, price, isHide } = formData;
+    const href = formData.href || null;
 
     try {
       await mutate(async (prev) => {
@@ -65,6 +67,7 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
           name,
           price,
           isVisible: !isHide,
+          href,
         });
         const updatedItem = res.data.data;
 
@@ -220,6 +223,19 @@ const EditItemDrawer = ({ isOpen = null, onClose = null, item = null }) => {
                   Max price is {MAX_NUMBER_CATALOG_ITEM_PRICE_LABEL}. Your
                   currency is set to {CURRENCY[user.currencyCode].currency}, you
                   can change it in Profile.
+                </FormHelperText>
+              </FormControl>
+              <FormControl>
+                <FormLabel>Link to</FormLabel>
+                <Input
+                  name="href"
+                  placeholder="https://example.com/product"
+                  value={formData.href}
+                  onChange={handleChange}
+                  isDisabled={isLoading}
+                />
+                <FormHelperText>
+                  URL must contain http:// or https://
                 </FormHelperText>
               </FormControl>
               <Flex justifyContent="space-between" alignItems="center">

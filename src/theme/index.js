@@ -71,6 +71,10 @@ const theme = extendTheme({
           _focus: {
             boxShadow: '8px 8px 0px #000000',
             bg: 'gray.100',
+            outlineStyle: 'solid',
+            outlineWidth: '2px',
+            outlineColor: 'blue.200',
+            outlineOffset: '4px',
           },
         },
       },

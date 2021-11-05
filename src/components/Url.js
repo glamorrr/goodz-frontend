@@ -17,7 +17,11 @@ import {
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import CURRENCY from '../utils/CURRENCY';
-import { HiOutlinePhotograph, HiOutlineLocationMarker } from 'react-icons/hi';
+import {
+  HiOutlinePhotograph,
+  HiOutlineLocationMarker,
+  HiExternalLink,
+} from 'react-icons/hi';
 import Logo from './Logo';
 import useSWR from 'swr';
 import { useParams, Link as ReactRouterLink } from 'react-router-dom';
@@ -197,8 +201,33 @@ const Url = () => {
                           )}
                         </AspectRatio>
                         <Box>
-                          <Text fontWeight="bold" fontSize="lg" maxW="400px">
-                            {item.name}
+                          <Text
+                            fontWeight="bold"
+                            fontSize="lg"
+                            maxW="400px"
+                            verticalAlign="top"
+                          >
+                            {item.href ? (
+                              <Link
+                                href={item.href}
+                                isExternal
+                                _hover={{
+                                  bg: 'gray.200',
+                                  textDecoration: 'underline',
+                                }}
+                              >
+                                {item.name}
+                                <Icon
+                                  mx={1}
+                                  mt={-1}
+                                  color="gray.900"
+                                  boxSize="24px"
+                                  as={HiExternalLink}
+                                />
+                              </Link>
+                            ) : (
+                              item.name
+                            )}
                           </Text>
                           <Box
                             mt={3}
