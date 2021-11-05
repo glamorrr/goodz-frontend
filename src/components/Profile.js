@@ -117,7 +117,7 @@ const IdentitySection = () => {
   };
 
   return (
-    <Box bg="white" w="340px" rounded="base" overflow="hidden" shadow="base">
+    <Box bg="white" w="328px" rounded="base" overflow="hidden" shadow="base">
       <Box p={8}>
         <Heading fontSize="2xl">Profile</Heading>
         <VStack
