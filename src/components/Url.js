@@ -26,6 +26,7 @@ import Logo from './Logo';
 import useSWR from 'swr';
 import { useParams, Link as ReactRouterLink } from 'react-router-dom';
 import UrlFallback from './UrlFallback';
+import PageView from './PageView';
 
 const Url = () => {
   const { url } = useParams();
@@ -69,6 +70,8 @@ const Url = () => {
       <Helmet>
         <title>{store.name}</title>
       </Helmet>
+
+      <PageView />
 
       {store.background && (
         <AspectRatio height="300px" w="full" overflow="hidden">

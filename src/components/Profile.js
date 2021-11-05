@@ -10,7 +10,6 @@ import {
   VStack,
   Stack,
   Select,
-  HStack,
   Switch,
   Text,
   Image,
@@ -118,7 +117,7 @@ const IdentitySection = () => {
   };
 
   return (
-    <Box bg="white" w="340px" rounded="base" overflow="hidden">
+    <Box bg="white" w="340px" rounded="base" overflow="hidden" shadow="base">
       <Box p={8}>
         <Heading fontSize="2xl">Profile</Heading>
         <VStack
@@ -291,7 +290,14 @@ const ImageSection = () => {
 
   return (
     <>
-      <Box p={8} bg="white" maxW="420px" rounded="base" overflow="hidden">
+      <Box
+        p={8}
+        shadow="base"
+        bg="white"
+        maxW="420px"
+        rounded="base"
+        overflow="hidden"
+      >
         <Heading fontSize="2xl">Image</Heading>
         {user.image ? (
           <Image
@@ -495,6 +501,7 @@ const BackgroundSection = () => {
   return (
     <>
       <Box
+        shadow="base"
         p={8}
         bg="white"
         maxW="640px"
@@ -674,6 +681,7 @@ const SettingsSection = () => {
 
   return (
     <VStack
+      shadow="base"
       spacing="32px"
       p={8}
       bg="white"
@@ -684,10 +692,12 @@ const SettingsSection = () => {
       divider={<StackDivider borderColor="gray.200" />}
     >
       <Flex justifyContent="space-between" w="full" alignItems="Center">
-        <HStack spacing={3}>
-          <Heading fontSize="xl">Show credit</Heading>
-          <Logo w="92px" />
-        </HStack>
+        <Heading fontSize="xl">
+          <Box as="span" mr={2}>
+            Show credit
+          </Box>
+          <Logo display="inline-block" w="80px" mb={-1} />
+        </Heading>
         <Switch
           ml={6}
           onChange={() => setIsCredit(!isCredit)}
@@ -729,6 +739,80 @@ const SettingsSection = () => {
   );
 };
 
+const ViewsSection = () => {
+  const { user } = useUser();
+
+  const {
+    pageviews: { allTime, last30Days },
+  } = user;
+
+  const NumberViewCard = ({ value, label, ...rest }) => {
+    return (
+      <VStack
+        w="200px"
+        h="140px"
+        rounded="base"
+        bg="gray.50"
+        spacing={1}
+        justifyContent="center"
+        {...rest}
+      >
+        <Text fontSize="2xl">{value}</Text>
+        <Text color="gray.400">{label}</Text>
+      </VStack>
+    );
+  };
+
+  return (
+    <VStack
+      shadow="base"
+      spacing="36px"
+      p={8}
+      bg="white"
+      maxW="540px"
+      rounded="base"
+      overflow="hidden"
+      alignItems="flex-start"
+      divider={<StackDivider borderColor="gray.200" />}
+    >
+      <VStack spacing={5} alignItems="flex-start">
+        <Heading fontSize="xl">Last 30 Days Views</Heading>
+        <Flex direction={{ base: 'column', md: 'row' }}>
+          <NumberViewCard
+            value={allTime.mobile}
+            label="Mobile"
+            mb={{ base: 8, md: 0 }}
+            mr={{ base: 0, md: 8 }}
+          />
+          <NumberViewCard value={allTime.desktop} label="Desktop" />
+        </Flex>
+        <Text fontStyle="italic" color="gray.400">
+          Since{' '}
+          {new Date(
+            new Date().getTime() - 30 * 24 * 60 * 60 * 1000
+          ).toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </Text>
+      </VStack>
+      <VStack spacing={5} alignItems="flex-start">
+        <Heading fontSize="xl">All Time Views</Heading>
+        <Flex direction={{ base: 'column', md: 'row' }}>
+          <NumberViewCard
+            value={last30Days.mobile}
+            label="Mobile"
+            mb={{ base: 8, md: 0 }}
+            mr={{ base: 0, md: 8 }}
+          />
+          <NumberViewCard value={last30Days.desktop} label="Desktop" />
+        </Flex>
+      </VStack>
+    </VStack>
+  );
+};
+
 const Profile = () => {
   return (
     <VStack spacing="48px" alignItems="flex-start">
@@ -742,6 +826,7 @@ const Profile = () => {
       </Stack>
       <BackgroundSection />
       <SettingsSection />
+      <ViewsSection />
     </VStack>
   );
 };

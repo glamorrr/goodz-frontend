@@ -75,7 +75,7 @@ const AccountSection = () => {
   };
 
   return (
-    <Box bg="white" maxW="360px" rounded="base" overflow="hidden">
+    <Box bg="white" maxW="360px" rounded="base" overflow="hidden" shadow="base">
       <Box p={8}>
         <Heading fontSize="2xl">Account</Heading>
         <VStack
@@ -152,7 +152,13 @@ const LogoutSection = () => {
 
   return (
     <>
-      <Box bg="white" maxW="360px" rounded="base" overflow="hidden">
+      <Box
+        bg="white"
+        maxW="360px"
+        rounded="base"
+        overflow="hidden"
+        shadow="base"
+      >
         <Box p={8}>
           <Heading fontSize="2xl">Logout</Heading>
           <VStack mt={4} spacing={4}>
@@ -245,7 +251,7 @@ const DeleteAccountSection = () => {
 
   return (
     <>
-      <Box bg="white" rounded="base" overflow="hidden">
+      <Box bg="white" rounded="base" overflow="hidden" shadow="base">
         <Box p={8}>
           <Heading fontSize="2xl">Delete Account</Heading>
           <VStack mt={4} spacing={4}>
