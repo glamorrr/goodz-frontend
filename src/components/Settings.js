@@ -31,7 +31,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
-const AccountSection = () => {
+const LinkSection = () => {
   const { user, mutate } = useUser();
   const [url, setUrl] = useState(user.url);
   const [isChanged, setIsChanged] = useState(false);
@@ -77,7 +77,7 @@ const AccountSection = () => {
   return (
     <Box bg="white" maxW="360px" rounded="base" overflow="hidden" shadow="base">
       <Box p={8}>
-        <Heading fontSize="2xl">Account</Heading>
+        <Heading fontSize="2xl">Custom Link</Heading>
         <VStack
           mt={4}
           spacing={4}
@@ -161,9 +161,7 @@ const LogoutSection = () => {
       >
         <Box p={8}>
           <Heading fontSize="2xl">Logout</Heading>
-          <VStack mt={4} spacing={4}>
-            <Text>Logout from your account.</Text>
-          </VStack>
+          <Text mt={4}>Logout from your account.</Text>
         </Box>
         <Button
           w="full"
@@ -254,9 +252,9 @@ const DeleteAccountSection = () => {
       <Box bg="white" rounded="base" overflow="hidden" shadow="base">
         <Box p={8}>
           <Heading fontSize="2xl">Delete Account</Heading>
-          <VStack mt={4} spacing={4}>
-            <Text>Permanently delete your data and can't be recovered.</Text>
-          </VStack>
+          <Text mt={4}>
+            Permanently delete your data and can't be recovered.
+          </Text>
         </Box>
         <Button
           w="full"
@@ -328,12 +326,26 @@ const DeleteAccountSection = () => {
   );
 };
 
+const EmailSection = () => {
+  const { user } = useUser();
+
+  return (
+    <Box bg="white" maxW="360px" rounded="base" overflow="hidden" shadow="base">
+      <Box p={8}>
+        <Heading fontSize="xl">Email</Heading>
+        <Text mt={4}>{user.email}</Text>
+      </Box>
+    </Box>
+  );
+};
+
 const Settings = () => {
   return (
     <VStack spacing="48px" alignItems="flex-start">
-      <AccountSection />
+      <LinkSection />
       <LogoutSection />
       <DeleteAccountSection />
+      <EmailSection />
     </VStack>
   );
 };
