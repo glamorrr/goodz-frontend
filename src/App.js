@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Box } from '@chakra-ui/react';
 import Url from './components/Url';
@@ -45,6 +45,7 @@ const App = () => {
       <Route path="/:url" exact>
         <Url />
       </Route>
+      <Redirect to="/" />
     </Switch>
   );
 };
