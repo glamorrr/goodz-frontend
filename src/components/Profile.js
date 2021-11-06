@@ -274,7 +274,7 @@ const ImageSection = () => {
         return { ...prev, data: { ...prev.data, ...updatedStore } };
       }, false);
 
-      onClose();
+      handleClose();
       toast({
         description: 'Image updated!',
         status: 'success',
@@ -484,7 +484,7 @@ const BackgroundSection = () => {
         return { ...prev, data: { ...prev.data, ...updatedStore } };
       }, false);
 
-      onClose();
+      handleClose();
       toast({
         description: 'Background updated!',
         status: 'success',

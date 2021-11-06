@@ -138,7 +138,7 @@ const EditItemImageDrawer = ({
         return { ...prev, data: updatedCatalog };
       }, false);
 
-      onClose();
+      handleClose();
       toast({
         description: 'Image updated!',
         status: 'success',
