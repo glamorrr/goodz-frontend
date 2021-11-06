@@ -52,7 +52,8 @@ const Home = () => {
               without interrupting your content.
             </Text>
             <Text mt={4}>
-              If there is something you want to talk about, contact us at{' '}
+              If there is something you want to talk about, feel free to contact
+              us at{' '}
               <Text as="span" bg="gray.900" color="white">
                 hi@goodz.id
               </Text>
