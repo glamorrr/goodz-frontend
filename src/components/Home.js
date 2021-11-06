@@ -1,8 +1,40 @@
-import { Box, Text, Button, HStack, Container } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  Button,
+  HStack,
+  Container,
+  Heading,
+  VStack,
+  Icon,
+} from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
+import {
+  HiOutlineCurrencyDollar,
+  HiOutlineLink,
+  HiOutlinePencilAlt,
+} from 'react-icons/hi';
 import Logo from './Logo.js';
 
 const Home = () => {
+  const features = [
+    {
+      icon: HiOutlinePencilAlt,
+      title: 'Live Editing',
+      description: 'All changes can be seen immediately',
+    },
+    {
+      icon: HiOutlineLink,
+      title: 'Custom Link',
+      description: 'Set your link to suite your brand',
+    },
+    {
+      icon: HiOutlineCurrencyDollar,
+      title: 'Customizable Currency',
+      description: '100+ currencies are supported',
+    },
+  ];
+
   return (
     <>
       <Helmet>
@@ -41,6 +73,26 @@ const Home = () => {
               </Button>
             </HStack>
           </Box>
+          <VStack
+            maxW="450px"
+            w="full"
+            alignItems="flex-start"
+            mt={14}
+            spacing={8}
+            p={8}
+            bgColor="white"
+            rounded="lg"
+          >
+            {features.map(({ title, description, icon }) => (
+              <VStack alignItems="flex-start" spacing={3}>
+                <Heading fontSize="2xl" fontWeight="normal">
+                  <Icon fontSize="24px" as={icon} mr={2} mt={-1} />
+                  {title}
+                </Heading>
+                <Text>{description}</Text>
+              </VStack>
+            ))}
+          </VStack>
         </Container>
       </Box>
     </>
