@@ -309,11 +309,7 @@ const ImageSection = () => {
             onClick={onOpen}
             mt={6}
           >
-            <ImagePlaceholder
-              blurhash={user.image.blurhash}
-              width={146}
-              height={146}
-            >
+            <ImagePlaceholder color={user.image.color}>
               <Image
                 objectFit="cover"
                 src={`${process.env.REACT_APP_IMAGE_URL}/${user.image.path}`}
@@ -350,11 +346,7 @@ const ImageSection = () => {
                 <FormLabel>Image</FormLabel>
                 {user.image && (
                   <AspectRatio boxSize="160px" rounded="full" overflow="hidden">
-                    <ImagePlaceholder
-                      blurhash={user.image.blurhash}
-                      width={160}
-                      height={160}
-                    >
+                    <ImagePlaceholder color={user.image.color}>
                       <Image
                         src={`${process.env.REACT_APP_IMAGE_URL}/${user.image.path}`}
                         objectFit="cover"
@@ -534,11 +526,7 @@ const BackgroundSection = () => {
             cursor="pointer"
             onClick={onOpen}
           >
-            <ImagePlaceholder
-              blurhash={user.background.blurhash}
-              width={1450}
-              height={450}
-            >
+            <ImagePlaceholder color={user.background.color}>
               <Image
                 src={`${process.env.REACT_APP_IMAGE_URL}/${user.background.path}`}
                 alt={user.name}
@@ -574,16 +562,12 @@ const BackgroundSection = () => {
                 <FormLabel>Background</FormLabel>
                 {user.background && (
                   <AspectRatio
-                    w="257px"
-                    h="80px"
+                    w="272px"
+                    h="85px"
                     rounded="base"
                     overflow="hidden"
                   >
-                    <ImagePlaceholder
-                      blurhash={user.background.blurhash}
-                      width={272}
-                      height={80}
-                    >
+                    <ImagePlaceholder color={user.background.color}>
                       <Image
                         src={`${process.env.REACT_APP_IMAGE_URL}/${user.background.path}`}
                         alt="preview"
@@ -594,8 +578,8 @@ const BackgroundSection = () => {
                 )}
                 {file && (
                   <AspectRatio
-                    w="257px"
-                    h="80px"
+                    w="272px"
+                    h="85px"
                     rounded="base"
                     overflow="hidden"
                   >
@@ -606,8 +590,8 @@ const BackgroundSection = () => {
                   <Center
                     {...getRootProps()}
                     justifyContent="center"
-                    w="257px"
-                    h="80px"
+                    w="272px"
+                    h="85px"
                     flexDirection="column"
                     border="2px dashed"
                     borderColor="gray.200"

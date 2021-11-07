@@ -169,11 +169,7 @@ const EditItemImageDrawer = ({
               <FormLabel>Image</FormLabel>
               {item.image && (
                 <AspectRatio boxSize="272px" overflow="hidden" rounded="md">
-                  <ImagePlaceholder
-                    blurhash={item.image.blurhash}
-                    width={272}
-                    height={272}
-                  >
+                  <ImagePlaceholder color={item.image.color}>
                     <Image
                       src={`${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`}
                       objectFit="cover"

@@ -69,11 +69,7 @@ const CatalogItem = ({ item, position, catalogId }) => {
                   onClick={onOpenImage}
                   ml={4}
                 >
-                  <ImagePlaceholder
-                    blurhash={item.image.blurhash}
-                    width={72}
-                    height={72}
-                  >
+                  <ImagePlaceholder color={item.image.color}>
                     <Image
                       src={`${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`}
                       alt={item.name}
