@@ -6,6 +6,12 @@ import {
   Container,
   Heading,
   VStack,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Link,
   Icon,
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
@@ -48,8 +54,7 @@ const Home = () => {
             <Text mt={6}>
               Create a website page for your store. You can list all of your
               goods with just one link. Suitable to include in your social media
-              bio. It's free. To provide this service we will display ads
-              without interrupting your content.
+              bio. It's free.
             </Text>
             <Text mt={4}>
               If there is something you want to talk about, feel free to contact
@@ -94,6 +99,77 @@ const Home = () => {
               </VStack>
             ))}
           </VStack>
+          <Heading mt={12} fontSize="2xl" fontWeight="normal">
+            Help
+          </Heading>
+          <Accordion allowToggle w="full" mt={4} maxW="450px">
+            <AccordionItem border="none">
+              <AccordionButton
+                border="1px solid"
+                borderColor="gray.200"
+                bg="white"
+                rounded="lg"
+                _hover={{ bg: 'gray.100' }}
+              >
+                <Box flex="1" textAlign="left">
+                  What can i create?
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={1}>
+                You can create a simple site, you can see our page as an example
+                at{' '}
+                <Link
+                  isExternal
+                  color="blue.500"
+                  href={`${window.location.origin}/goodz`}
+                >
+                  goodz.id/goodz
+                </Link>
+                .
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem border="none" mt={2}>
+              <AccordionButton
+                border="1px solid"
+                borderColor="gray.200"
+                bg="white"
+                rounded="lg"
+                _hover={{ bg: 'gray.100' }}
+              >
+                <Box flex="1" textAlign="left">
+                  Do i have to pay to use this service?
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={1}>Nope.</AccordionPanel>
+            </AccordionItem>
+            <AccordionItem border="none" mt={2}>
+              <AccordionButton
+                border="1px solid"
+                borderColor="gray.200"
+                bg="white"
+                rounded="lg"
+                _hover={{ bg: 'gray.100' }}
+              >
+                <Box flex="1" textAlign="left">
+                  My image size is too big, what should i do?
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel>
+                You can visit{' '}
+                <Link
+                  isExternal
+                  color="blue.500"
+                  href="https://compressimage.io"
+                >
+                  compressimage.io
+                </Link>{' '}
+                to minify your image size.
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </Container>
       </Box>
     </>
