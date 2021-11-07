@@ -79,7 +79,6 @@ const Url = () => {
           >
             <Image
               objectFit="cover"
-              bg={store.background.color}
               src={`${process.env.REACT_APP_IMAGE_URL}/${store.background.path}`}
               alt={store.name}
             />
