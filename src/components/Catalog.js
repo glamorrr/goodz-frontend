@@ -11,6 +11,7 @@ import {
   Box,
   useDisclosure,
   Tooltip,
+  AspectRatio,
   Center,
   useToast,
 } from '@chakra-ui/react';
@@ -30,6 +31,7 @@ import handleError from '../utils/handleError';
 import useCatalog from '../utils/swr/useCatalog';
 import useUser from '../utils/swr/useUser';
 import CURRENCY from '../utils/CURRENCY';
+import ImagePlaceholder from './ImagePlaceholder';
 
 const CatalogItem = ({ item, position, catalogId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -57,16 +59,28 @@ const CatalogItem = ({ item, position, catalogId }) => {
           >
             <Flex alignItems="center" flexGrow={1} overflow="hidden">
               {item.image ? (
-                <Image
-                  bg={item.image.color}
-                  src={`${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`}
-                  alt={item.name}
-                  boxSize="72px"
-                  cursor="pointer"
+                <AspectRatio
+                  w="72px"
+                  h="72px"
+                  flexShrink={0}
                   rounded="base"
+                  overflow="hidden"
+                  cursor="pointer"
                   onClick={onOpenImage}
                   ml={4}
-                />
+                >
+                  <ImagePlaceholder
+                    blurhash={item.image.blurhash}
+                    width={72}
+                    height={72}
+                  >
+                    <Image
+                      src={`${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`}
+                      alt={item.name}
+                      objectFit="cover"
+                    />
+                  </ImagePlaceholder>
+                </AspectRatio>
               ) : (
                 <Center
                   boxSize="72px"

@@ -27,6 +27,7 @@ import {
   Heading,
   useToast,
 } from '@chakra-ui/react';
+import ImagePlaceholder from './ImagePlaceholder';
 import { HiOutlinePhotograph } from 'react-icons/hi';
 import handleError from '../utils/handleError';
 import LengthCounter from './LengthCounter';
@@ -300,16 +301,26 @@ const ImageSection = () => {
       >
         <Heading fontSize="2xl">Image</Heading>
         {user.image ? (
-          <Image
-            mt={6}
-            bg={user.image.color}
-            src={`${process.env.REACT_APP_IMAGE_URL}/${user.image.path}`}
-            alt={user.name}
+          <AspectRatio
             boxSize="146px"
             rounded="full"
+            overflow="hidden"
             cursor="pointer"
             onClick={onOpen}
-          />
+            mt={6}
+          >
+            <ImagePlaceholder
+              blurhash={user.image.blurhash}
+              width={146}
+              height={146}
+            >
+              <Image
+                objectFit="cover"
+                src={`${process.env.REACT_APP_IMAGE_URL}/${user.image.path}`}
+                alt={user.name}
+              />
+            </ImagePlaceholder>
+          </AspectRatio>
         ) : (
           <Center
             mt={6}
@@ -337,25 +348,31 @@ const ImageSection = () => {
             <VStack as="form" spacing="24px" onSubmit={handleSave}>
               <FormControl>
                 <FormLabel>Image</FormLabel>
-                {file || user.image ? (
-                  <Image
-                    src={
-                      user.image
-                        ? `${process.env.REACT_APP_IMAGE_URL}/${user.image.path}`
-                        : file.preview
-                    }
-                    boxSize="272px"
-                    bg={user.image?.color || 'none'}
-                    objectFit="cover"
-                    rounded="full"
-                    alt="preview"
-                  />
-                ) : (
+                {user.image && (
+                  <AspectRatio boxSize="160px" rounded="full" overflow="hidden">
+                    <ImagePlaceholder
+                      blurhash={user.image.blurhash}
+                      width={160}
+                      height={160}
+                    >
+                      <Image
+                        src={`${process.env.REACT_APP_IMAGE_URL}/${user.image.path}`}
+                        objectFit="cover"
+                        alt="preview"
+                      />
+                    </ImagePlaceholder>
+                  </AspectRatio>
+                )}
+                {file && (
+                  <AspectRatio boxSize="160px" rounded="full" overflow="hidden">
+                    <Image src={file.preview} alt="preview" objectFit="cover" />
+                  </AspectRatio>
+                )}
+                {!file && !user.image && (
                   <Center
                     {...getRootProps()}
                     justifyContent="center"
-                    w="272px"
-                    h="272px"
+                    boxSize="160px"
                     flexDirection="column"
                     border="2px dashed"
                     borderColor="gray.200"
@@ -363,12 +380,9 @@ const ImageSection = () => {
                     cursor="pointer"
                   >
                     <Input {...getInputProps()} />
-                    <Icon
-                      color="gray.100"
-                      boxSize="84px"
-                      as={HiOutlinePhotograph}
-                    />
-                    <Text color="gray.200">Click or drop to upload</Text>
+                    <Text color="gray.200" textAlign="center">
+                      Click or drop to upload
+                    </Text>
                   </Center>
                 )}
                 <FormHelperText>
@@ -511,16 +525,26 @@ const BackgroundSection = () => {
       >
         <Heading fontSize="2xl">Background</Heading>
         {user.background ? (
-          <AspectRatio mt={6} ratio={1450 / 450} maxW="640px">
-            <Image
-              bg={user.background.color}
-              src={`${process.env.REACT_APP_IMAGE_URL}/${user.background.path}`}
-              alt={user.name}
-              objectFit="cover"
-              rounded="base"
-              cursor="pointer"
-              onClick={onOpen}
-            />
+          <AspectRatio
+            mt={6}
+            ratio={1450 / 450}
+            maxW="640px"
+            rounded="base"
+            overflow="hidden"
+            cursor="pointer"
+            onClick={onOpen}
+          >
+            <ImagePlaceholder
+              blurhash={user.background.blurhash}
+              width={1450}
+              height={450}
+            >
+              <Image
+                src={`${process.env.REACT_APP_IMAGE_URL}/${user.background.path}`}
+                alt={user.name}
+                objectFit="cover"
+              />
+            </ImagePlaceholder>
           </AspectRatio>
         ) : (
           <AspectRatio mt={6} ratio={1450 / 450} maxW="640px">
@@ -548,21 +572,37 @@ const BackgroundSection = () => {
             <VStack as="form" spacing="24px" onSubmit={handleSave}>
               <FormControl>
                 <FormLabel>Background</FormLabel>
-                {file || user.background ? (
-                  <Image
-                    src={
-                      user.background
-                        ? `${process.env.REACT_APP_IMAGE_URL}/${user.background.path}`
-                        : file.preview
-                    }
+                {user.background && (
+                  <AspectRatio
                     w="257px"
                     h="80px"
-                    bg={user.background?.color || 'none'}
-                    objectFit="cover"
                     rounded="base"
-                    alt="preview"
-                  />
-                ) : (
+                    overflow="hidden"
+                  >
+                    <ImagePlaceholder
+                      blurhash={user.background.blurhash}
+                      width={272}
+                      height={80}
+                    >
+                      <Image
+                        src={`${process.env.REACT_APP_IMAGE_URL}/${user.background.path}`}
+                        alt="preview"
+                        objectFit="cover"
+                      />
+                    </ImagePlaceholder>
+                  </AspectRatio>
+                )}
+                {file && (
+                  <AspectRatio
+                    w="257px"
+                    h="80px"
+                    rounded="base"
+                    overflow="hidden"
+                  >
+                    <Image src={file.preview} alt="preview" objectFit="cover" />
+                  </AspectRatio>
+                )}
+                {!file && !user.background && (
                   <Center
                     {...getRootProps()}
                     justifyContent="center"

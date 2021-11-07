@@ -7,7 +7,6 @@ import {
   Text,
   VStack,
   Icon,
-  Flex,
   Button,
   Stack,
   Center,
@@ -17,16 +16,14 @@ import {
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import CURRENCY from '../utils/CURRENCY';
-import {
-  HiOutlinePhotograph,
-  HiOutlineLocationMarker,
-  HiExternalLink,
-} from 'react-icons/hi';
+import { HiOutlineLocationMarker, HiExternalLink } from 'react-icons/hi';
+import Avatar from 'boring-avatars';
 import Logo from './Logo';
 import useSWR from 'swr';
 import { useParams, Link as ReactRouterLink } from 'react-router-dom';
 import UrlFallback from './UrlFallback';
 import PageView from './PageView';
+import ImagePlaceholder from './ImagePlaceholder';
 
 const Url = () => {
   const { url } = useParams();
@@ -75,16 +72,19 @@ const Url = () => {
 
       {store.background && (
         <AspectRatio height="300px" w="full" overflow="hidden">
-          <>
+          <ImagePlaceholder
+            blurhash={store.background.blurhash}
+            width={1450}
+            height={450}
+          >
             <Image
               objectFit="cover"
-              objectPosition="bottom"
               bg={store.background.color}
               src={`${process.env.REACT_APP_IMAGE_URL}/${store.background.path}`}
               alt={store.name}
             />
             <Box backgroundImage="linear-gradient(rgba(6, 13, 34, 0) 20%, rgba(6, 13, 34, 0.6))" />
-          </>
+          </ImagePlaceholder>
         </AspectRatio>
       )}
       <Box
@@ -99,26 +99,32 @@ const Url = () => {
             alignItems="center"
             maxW="320px"
             bg={'white'}
-            shadow={store.background ? 'sm' : 'none'}
+            shadow={store.background ? 'base' : 'none'}
             p={store.background ? 9 : 2}
             rounded="md"
           >
             {store.image ? (
-              <Image
-                bg={store.image.color}
-                rounded="full"
-                boxSize="96px"
-                src={`${process.env.REACT_APP_IMAGE_URL}/${store.image.path}`}
-                alt={store.name}
-              />
+              <AspectRatio w="96px" h="96px" overflow="hidden" rounded="full">
+                <ImagePlaceholder
+                  blurhash={store.image.blurhash}
+                  width={96}
+                  height={96}
+                >
+                  <Image
+                    src={`${process.env.REACT_APP_IMAGE_URL}/${store.image.path}`}
+                    alt={store.name}
+                    width="96px"
+                    height="96px"
+                  />
+                </ImagePlaceholder>
+              </AspectRatio>
             ) : (
-              <Center rounded="full" boxSize="96px" bg="gray.50">
-                <Icon
-                  color="gray.100"
-                  boxSize="40px"
-                  as={HiOutlinePhotograph}
-                />
-              </Center>
+              <Avatar
+                size={96}
+                name={store.name}
+                variant="ring"
+                colors={['#DDE0CF', '#C6BE9A', '#AD8B32', '#937460', '#8C5B7B']}
+              />
             )}
             <Heading as="h1" fontSize="xl" textAlign="center">
               {store.name}
@@ -188,19 +194,31 @@ const Url = () => {
                       <Stack spacing={4}>
                         <AspectRatio ratio={1 / 1} maxW="400px">
                           {item.image ? (
-                            <Image
-                              src={`${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`}
-                              alt={item.name}
-                              bg={item.image.color}
-                            />
-                          ) : (
-                            <Flex bg="gray.50">
-                              <Icon
-                                color="gray.100"
-                                boxSize="120px"
-                                as={HiOutlinePhotograph}
+                            <ImagePlaceholder
+                              blurhash={item.image.blurhash}
+                              width={400}
+                              height={400}
+                            >
+                              <Image
+                                src={`${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`}
+                                alt={item.name}
+                                objectFit="cover"
                               />
-                            </Flex>
+                            </ImagePlaceholder>
+                          ) : (
+                            <Avatar
+                              size={400}
+                              name={item.name}
+                              square={true}
+                              variant="bauhaus"
+                              colors={[
+                                '#DDE0CF',
+                                '#C6BE9A',
+                                '#AD8B32',
+                                '#937460',
+                                '#8C5B7B',
+                              ]}
+                            />
                           )}
                         </AspectRatio>
                         <Box>

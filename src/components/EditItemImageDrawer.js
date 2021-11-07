@@ -15,6 +15,7 @@ import {
   VStack,
   Text,
   Image,
+  AspectRatio,
   Icon,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -23,6 +24,7 @@ import axios from 'axios';
 import useCatalog from '../utils/swr/useCatalog';
 import { useDropzone } from 'react-dropzone';
 import { HiOutlinePhotograph } from 'react-icons/hi';
+import ImagePlaceholder from './ImagePlaceholder';
 
 const EditItemImageDrawer = ({
   isOpen = null,
@@ -165,20 +167,27 @@ const EditItemImageDrawer = ({
           <VStack mt={4} as="form" spacing="24px" onSubmit={handleSave}>
             <FormControl isRequired>
               <FormLabel>Image</FormLabel>
-              {file || item.image ? (
-                <Image
-                  src={
-                    item.image
-                      ? `${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`
-                      : file.preview
-                  }
-                  boxSize="272px"
-                  bg={item.image?.color || 'none'}
-                  objectFit="cover"
-                  rounded="md"
-                  alt="preview"
-                />
-              ) : (
+              {item.image && (
+                <AspectRatio boxSize="272px" overflow="hidden" rounded="md">
+                  <ImagePlaceholder
+                    blurhash={item.image.blurhash}
+                    width={272}
+                    height={272}
+                  >
+                    <Image
+                      src={`${process.env.REACT_APP_IMAGE_URL}/${item.image.path}`}
+                      objectFit="cover"
+                      alt="preview"
+                    />
+                  </ImagePlaceholder>
+                </AspectRatio>
+              )}
+              {file && (
+                <AspectRatio boxSize="272px" overflow="hidden" rounded="md">
+                  <Image src={file.preview} objectFit="cover" alt="preview" />
+                </AspectRatio>
+              )}
+              {!file && !item.image && (
                 <Center
                   {...getRootProps()}
                   justifyContent="center"
