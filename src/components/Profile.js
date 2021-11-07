@@ -204,7 +204,7 @@ const ImageSection = () => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png',
     maxFiles: 1,
-    maxSize: 5 * 1000 * 1000,
+    maxSize: 2 * 1000 * 1000,
     onDrop: (acceptedFiles) => {
       if (acceptedFiles[0]) {
         setFile(
@@ -216,7 +216,7 @@ const ImageSection = () => {
       }
       toast({
         title: 'Image',
-        description: 'Maximum file size is 5 MB',
+        description: 'Maximum file size is 2 MB',
         status: 'error',
         position: 'top',
         duration: 3000,
@@ -378,7 +378,7 @@ const ImageSection = () => {
                   </Center>
                 )}
                 <FormHelperText>
-                  Maximum file size is 5 MB. Only JPG, JPEG, and PNG are
+                  Maximum file size is 2 MB. Only JPG, JPEG, and PNG are
                   supported. Recommended image 160x160 pixels.
                 </FormHelperText>
               </FormControl>
@@ -419,7 +419,7 @@ const BackgroundSection = () => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png',
     maxFiles: 1,
-    maxSize: 5 * 1000 * 1000,
+    maxSize: 2 * 1000 * 1000,
     onDrop: (acceptedFiles) => {
       if (acceptedFiles[0]) {
         setFile(
@@ -431,7 +431,7 @@ const BackgroundSection = () => {
       }
       toast({
         title: 'Background',
-        description: 'Maximum file size is 5 MB',
+        description: 'Maximum file size is 2 MB',
         status: 'error',
         position: 'top',
         duration: 3000,
@@ -608,7 +608,7 @@ const BackgroundSection = () => {
                   </Center>
                 )}
                 <FormHelperText>
-                  Maximum file size is 5 MB. Only JPG, JPEG, and PNG are
+                  Maximum file size is 2 MB. Only JPG, JPEG, and PNG are
                   supported. Recommended background 1450x450 pixels.
                 </FormHelperText>
               </FormControl>

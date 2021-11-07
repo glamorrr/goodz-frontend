@@ -42,7 +42,7 @@ const EditItemImageDrawer = ({
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/jpeg, image/png',
     maxFiles: 1,
-    maxSize: 5 * 1000 * 1000,
+    maxSize: 2 * 1000 * 1000,
     onDrop: (acceptedFiles) => {
       if (acceptedFiles[0]) {
         setFile(
@@ -54,7 +54,7 @@ const EditItemImageDrawer = ({
       }
       toast({
         title: 'Image',
-        description: 'Maximum file size is 5 MB',
+        description: 'Maximum file size is 2 MB',
         status: 'error',
         position: 'top',
         duration: 3000,
@@ -205,7 +205,7 @@ const EditItemImageDrawer = ({
                 </Center>
               )}
               <FormHelperText>
-                Maximum file size is 5 MB. Only JPG, JPEG, and PNG are
+                Maximum file size is 2 MB. Only JPG, JPEG, and PNG are
                 supported. Recommended image 400x400 pixels.
               </FormHelperText>
             </FormControl>
