@@ -10,6 +10,7 @@ import {
   VStack,
   Stack,
   Select,
+  useBreakpointValue,
   Switch,
   Text,
   Image,
@@ -412,6 +413,7 @@ const ImageSection = () => {
 
 const BackgroundSection = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const size = useBreakpointValue({ lg: 'lg' });
   const { user, mutate } = useUser();
   const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState(null);
@@ -549,7 +551,12 @@ const BackgroundSection = () => {
           </AspectRatio>
         )}
       </Box>
-      <Drawer isOpen={isOpen} placement="right" onClose={handleClose}>
+      <Drawer
+        isOpen={isOpen}
+        placement="right"
+        onClose={handleClose}
+        size={size}
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -562,8 +569,8 @@ const BackgroundSection = () => {
                 <FormLabel>Background</FormLabel>
                 {user.background && (
                   <AspectRatio
-                    w="272px"
-                    h="85px"
+                    ratio={1450 / 450}
+                    maxW="624px"
                     rounded="base"
                     overflow="hidden"
                   >
@@ -578,8 +585,8 @@ const BackgroundSection = () => {
                 )}
                 {file && (
                   <AspectRatio
-                    w="272px"
-                    h="85px"
+                    ratio={1450 / 450}
+                    maxW="624px"
                     rounded="base"
                     overflow="hidden"
                   >
@@ -587,25 +594,27 @@ const BackgroundSection = () => {
                   </AspectRatio>
                 )}
                 {!file && !user.background && (
-                  <Center
-                    {...getRootProps()}
-                    justifyContent="center"
-                    w="272px"
-                    h="85px"
-                    flexDirection="column"
-                    border="2px dashed"
-                    borderColor="gray.200"
-                    rounded="base"
-                    cursor="pointer"
-                  >
-                    <Input {...getInputProps()} />
-                    <Icon
-                      color="gray.100"
-                      boxSize="32px"
-                      as={HiOutlinePhotograph}
-                    />
-                    <Text color="gray.200">Click or drop to upload</Text>
-                  </Center>
+                  <AspectRatio ratio={1450 / 450} maxW="624px">
+                    <Center
+                      {...getRootProps()}
+                      justifyContent="center"
+                      w="272px"
+                      h="85px"
+                      flexDirection="column"
+                      border="2px dashed"
+                      borderColor="gray.200"
+                      rounded="base"
+                      cursor="pointer"
+                    >
+                      <Input {...getInputProps()} />
+                      <Icon
+                        color="gray.100"
+                        boxSize={{ base: '32px', lg: '64px' }}
+                        as={HiOutlinePhotograph}
+                      />
+                      <Text color="gray.200">Click or drop to upload</Text>
+                    </Center>
+                  </AspectRatio>
                 )}
                 <FormHelperText>
                   Maximum file size is 2 MB. Only JPG, JPEG, and PNG are

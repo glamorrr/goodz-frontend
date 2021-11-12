@@ -117,7 +117,7 @@ const Home = () => {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel pb={1}>
-                You can create a simple site, you can see our page as an example
+                You can create a simple page, you can see our page as an example
                 at{' '}
                 <Link
                   isExternal

@@ -15,7 +15,6 @@ import {
   GridItem,
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
-import CURRENCY from '../utils/CURRENCY';
 import { HiOutlineLocationMarker, HiExternalLink } from 'react-icons/hi';
 import Avatar from 'boring-avatars';
 import Logo from './Logo';
@@ -24,6 +23,7 @@ import { useParams, Link as ReactRouterLink } from 'react-router-dom';
 import UrlFallback from './UrlFallback';
 import PageView from './PageView';
 import ImagePlaceholder from './ImagePlaceholder';
+import formatPrice from '../utils/formatPrice';
 
 const Url = () => {
   const { url } = useParams();
@@ -98,7 +98,9 @@ const Url = () => {
             alignItems="center"
             maxW="320px"
             bg={'white'}
-            shadow={store.background ? 'base' : 'none'}
+            borderWidth={store.background ? '1px' : '0px'}
+            borderStyle="solid"
+            borderColor="gray.300"
             p={store.background ? 9 : 2}
             rounded="md"
           >
@@ -258,11 +260,7 @@ const Url = () => {
                             w="max-content"
                           >
                             <Text fontSize={{ base: 'sm', md: 'base' }}>
-                              {new Intl.NumberFormat(store.currencyCode, {
-                                style: 'currency',
-                                currency: CURRENCY[store.currencyCode].currency,
-                                currencyDisplay: 'code',
-                              }).format(item.price)}
+                              {formatPrice(item.price, store.currencyCode)}
                             </Text>
                           </Box>
                         </Box>

@@ -30,8 +30,8 @@ import EditHeaderDrawer from './EditHeaderDrawer';
 import handleError from '../utils/handleError';
 import useCatalog from '../utils/swr/useCatalog';
 import useUser from '../utils/swr/useUser';
-import CURRENCY from '../utils/CURRENCY';
 import ImagePlaceholder from './ImagePlaceholder';
+import formatPrice from '../utils/formatPrice';
 
 const CatalogItem = ({ item, position, catalogId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -124,11 +124,7 @@ const CatalogItem = ({ item, position, catalogId }) => {
                     </Text>
                   </Tooltip>
                   <Text isTruncated maxW="full">
-                    {new Intl.NumberFormat(user.currencyCode, {
-                      style: 'currency',
-                      currency: CURRENCY[user.currencyCode].currency,
-                      currencyDisplay: 'code',
-                    }).format(item.price)}
+                    {formatPrice(item.price, user.currencyCode)}
                   </Text>
                 </VStack>
                 <Tooltip

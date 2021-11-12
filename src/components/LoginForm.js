@@ -5,6 +5,8 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
@@ -15,6 +17,7 @@ import useUser from '../utils/swr/useUser';
 const LoginForm = () => {
   const history = useHistory();
   const toast = useToast();
+  const [isShow, setIsShow] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -66,14 +69,29 @@ const LoginForm = () => {
         </FormControl>
         <FormControl id="password" w="full" isRequired>
           <FormLabel>Password</FormLabel>
-          <Input
-            type="password"
-            onChange={handleChange}
-            value={formData.password}
-            name="password"
-            placeholder="Password"
-            isDisabled={isLoading}
-          />
+          <InputGroup>
+            <Input
+              type={isShow ? 'text' : 'password'}
+              onChange={handleChange}
+              pr={20}
+              value={formData.password}
+              name="password"
+              placeholder="Password"
+              isDisabled={isLoading}
+            />
+            <InputRightElement justifyContent="flex-end" w={24} px={3}>
+              <Button
+                h="1.75rem"
+                p={2}
+                size="sm"
+                variant="solid"
+                colorScheme="blue"
+                onClick={() => setIsShow(!isShow)}
+              >
+                {isShow ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
         </FormControl>
       </VStack>
       <Button isLoading={isLoading} mt={8} type="submit" w="full">

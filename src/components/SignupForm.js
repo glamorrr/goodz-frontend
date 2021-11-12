@@ -10,10 +10,13 @@ import {
   Input,
   Flex,
   FormHelperText,
+  InputRightElement,
   useToast,
+  Icon,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useState } from 'react';
+import { BsCapslock } from 'react-icons/bs';
 import LengthCounter from './LengthCounter';
 import {
   MAX_LENGTH_EMAIL,
@@ -27,6 +30,9 @@ import { useHistory } from 'react-router-dom';
 const SignupForm = () => {
   const history = useHistory();
   const toast = useToast();
+  const [isShow, setIsShow] = useState(false);
+  const [isCapsLock, setIsCapsLock] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -38,6 +44,10 @@ const SignupForm = () => {
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleKeyUp = (e) => {
+    setIsCapsLock(e.getModifierState('CapsLock'));
   };
 
   const handleSubmit = async (e) => {
@@ -141,15 +151,41 @@ const SignupForm = () => {
               {formData.password.length}/{MAX_LENGTH_PASSWORD}
             </LengthCounter>
           </Flex>
-          <Input
-            type="password"
-            maxLength={MAX_LENGTH_PASSWORD}
-            onChange={handleChange}
-            value={formData.password}
-            name="password"
-            placeholder="Password"
-            isDisabled={isLoading}
-          />
+          <InputGroup>
+            <Input
+              overflow="hidden"
+              pr="104px"
+              type={isShow ? 'text' : 'password'}
+              maxLength={MAX_LENGTH_PASSWORD}
+              onChange={handleChange}
+              value={formData.password}
+              name="password"
+              placeholder="Password"
+              isDisabled={isLoading}
+              onKeyUp={handleKeyUp}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+            />
+            <InputRightElement justifyContent="flex-end" w={32} px={3}>
+              <Icon
+                display={isFocus && isCapsLock ? 'block' : 'none'}
+                fontSize="20px"
+                as={BsCapslock}
+                color="gray.400"
+                mr={3}
+              />
+              <Button
+                h="1.75rem"
+                p={2}
+                size="sm"
+                variant="solid"
+                colorScheme="blue"
+                onClick={() => setIsShow(!isShow)}
+              >
+                {isShow ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
           <FormHelperText>
             Password must be {MIN_LENGTH_PASSWORD} to {MAX_LENGTH_PASSWORD}{' '}
             characters

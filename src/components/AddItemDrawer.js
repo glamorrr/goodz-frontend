@@ -149,7 +149,8 @@ const AddItemDrawer = ({ isOpen = null, onClose = null }) => {
               <FormHelperText>
                 Max price is {MAX_NUMBER_CATALOG_ITEM_PRICE_LABEL}. Your
                 currency is set to {CURRENCY[user.currencyCode].currency}, you
-                can change it in Profile.
+                can change it in Profile. If price is set to 0, "Free" tag will
+                be seen.
               </FormHelperText>
             </FormControl>
           </Stack>
