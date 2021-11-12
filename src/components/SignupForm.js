@@ -154,7 +154,7 @@ const SignupForm = () => {
           <InputGroup>
             <Input
               overflow="hidden"
-              pr="104px"
+              pr={28}
               type={isShow ? 'text' : 'password'}
               maxLength={MAX_LENGTH_PASSWORD}
               onChange={handleChange}
@@ -178,8 +178,7 @@ const SignupForm = () => {
                 h="1.75rem"
                 p={2}
                 size="sm"
-                variant="solid"
-                colorScheme="blue"
+                variant="ghost"
                 onClick={() => setIsShow(!isShow)}
               >
                 {isShow ? 'Hide' : 'Show'}

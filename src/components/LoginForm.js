@@ -84,8 +84,7 @@ const LoginForm = () => {
                 h="1.75rem"
                 p={2}
                 size="sm"
-                variant="solid"
-                colorScheme="blue"
+                variant="ghost"
                 onClick={() => setIsShow(!isShow)}
               >
                 {isShow ? 'Hide' : 'Show'}
