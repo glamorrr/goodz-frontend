@@ -20,9 +20,12 @@ import {
   HiOutlineLink,
   HiOutlinePencilAlt,
 } from 'react-icons/hi';
+import usePageviewAnalytics from '../utils/usePageviewAnalytics.js';
 import Logo from './Logo.js';
 
 const Home = () => {
+  usePageviewAnalytics('/');
+
   const features = [
     {
       icon: HiOutlinePencilAlt,
@@ -90,7 +93,7 @@ const Home = () => {
             rounded="lg"
           >
             {features.map(({ title, description, icon }) => (
-              <VStack alignItems="flex-start" spacing={3}>
+              <VStack key={title} alignItems="flex-start" spacing={3}>
                 <Heading fontSize="2xl" fontWeight="normal">
                   <Icon fontSize="24px" as={icon} mr={2} mt={-1} />
                   {title}

@@ -19,12 +19,15 @@ import {
 import { HiOutlineDuplicate } from 'react-icons/hi';
 import background from '../background.jpg';
 import useUser from '../../utils/swr/useUser';
+import usePageviewAnalytics from '../../utils/usePageviewAnalytics';
 
 const DashboardLayout = ({ children }) => {
   const { user } = useUser();
   const toast = useToast();
   const history = useHistory();
   const location = useLocation();
+
+  usePageviewAnalytics('/dashboard');
 
   const { onCopy } = useClipboard(`${window.location.origin}/${user.url}`);
 

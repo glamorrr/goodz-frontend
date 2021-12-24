@@ -6,12 +6,15 @@ import {
   Redirect,
 } from 'react-router-dom';
 import useUser from '../utils/swr/useUser';
+import usePageviewAnalytics from '../utils/usePageviewAnalytics';
 import background from './background.jpg';
 import LoginForm from './LoginForm';
 
 const Login = () => {
   const { user } = useUser();
   const history = useHistory();
+
+  usePageviewAnalytics('/login');
 
   if (user) {
     return <Redirect to="/dashboard" />;

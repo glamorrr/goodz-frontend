@@ -8,10 +8,13 @@ import {
 import { Helmet } from 'react-helmet';
 import background from './background.jpg';
 import useUser from '../utils/swr/useUser';
+import usePageviewAnalytics from '../utils/usePageviewAnalytics';
 
 const Signup = () => {
   const history = useHistory();
   const { user } = useUser();
+
+  usePageviewAnalytics('/signup');
 
   if (user) {
     return <Redirect to="/dashboard" />;

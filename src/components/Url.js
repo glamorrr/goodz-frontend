@@ -24,10 +24,12 @@ import UrlFallback from './UrlFallback';
 import PageView from './PageView';
 import ImagePlaceholder from './ImagePlaceholder';
 import formatPrice from '../utils/formatPrice';
+import usePageviewAnalytics from '../utils/usePageviewAnalytics';
 
 const Url = () => {
   const { url } = useParams();
   const { data, error } = useSWR(`/url/${url}`, { revalidateOnFocus: true });
+  usePageviewAnalytics('/:url');
 
   const store = data?.data;
 
