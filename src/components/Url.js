@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import { Helmet } from 'react-helmet';
 import { HiOutlineLocationMarker, HiExternalLink } from 'react-icons/hi';
-import Avatar from 'boring-avatars';
 import Logo from './Logo';
 import useSWR from 'swr';
 import { useParams, Link as ReactRouterLink } from 'react-router-dom';
@@ -122,12 +121,7 @@ const Url = () => {
                 </ImagePlaceholder>
               </AspectRatio>
             ) : (
-              <Avatar
-                size={96}
-                name={store.name}
-                variant="ring"
-                colors={['#DDE0CF', '#C6BE9A', '#AD8B32', '#937460', '#8C5B7B']}
-              />
+              <Box w="96px" h="96px" bg="gray.200" rounded="full" />
             )}
             <Heading as="h1" fontSize="xl" textAlign="center">
               {store.name}
@@ -163,7 +157,12 @@ const Url = () => {
             </Text>
           )}
           {Boolean(store.links.length) && (
-            <VStack mt={8} mb={12} spacing="32px" w="full">
+            <VStack
+              mt={store.background ? 12 : 8}
+              mb={12}
+              spacing="32px"
+              w="full"
+            >
               {store.links.map(({ id, title, href, isVisible }) => {
                 if (!isVisible) return <></>;
                 return (
@@ -172,7 +171,13 @@ const Url = () => {
                     as="a"
                     href={href}
                     target="_blank"
-                    variant="storeLink"
+                    variant="ghost"
+                    fontWeight="normal"
+                    borderColor="gray.800"
+                    borderTopWidth={1}
+                    borderLeftWidth={1}
+                    borderRightWidth={1}
+                    borderBottomWidth={6}
                     w="full"
                   >
                     {title}
@@ -195,7 +200,12 @@ const Url = () => {
                   return (
                     <GridItem key={id}>
                       <Stack spacing={4}>
-                        <AspectRatio ratio={1 / 1} maxW="400px">
+                        <AspectRatio
+                          ratio={1 / 1}
+                          maxW="400px"
+                          rounded="lg"
+                          overflow="hidden"
+                        >
                           {item.image ? (
                             <ImagePlaceholder
                               blurhash={item.image.blurhash}
@@ -209,19 +219,7 @@ const Url = () => {
                               />
                             </ImagePlaceholder>
                           ) : (
-                            <Avatar
-                              size={400}
-                              name={item.name}
-                              square={true}
-                              variant="bauhaus"
-                              colors={[
-                                '#DDE0CF',
-                                '#C6BE9A',
-                                '#AD8B32',
-                                '#937460',
-                                '#8C5B7B',
-                              ]}
-                            />
+                            <Box w="400px" h="400px" bg="gray.200" />
                           )}
                         </AspectRatio>
                         <Box>
@@ -257,9 +255,15 @@ const Url = () => {
                             mt={3}
                             px={5}
                             py={2.5}
-                            border="1px solid"
-                            borderColor="gray.900"
                             w="max-content"
+                            rounded="base"
+                            variant="ghost"
+                            fontWeight="normal"
+                            borderColor="gray.800"
+                            borderTopWidth={1}
+                            borderLeftWidth={1}
+                            borderRightWidth={1}
+                            borderBottomWidth={2}
                           >
                             <Text fontSize={{ base: 'sm', md: 'base' }}>
                               {formatPrice(item.price, store.currencyCode)}
@@ -278,14 +282,7 @@ const Url = () => {
                       key={id}
                       colSpan={{ sm: 2, md: 3 }}
                     >
-                      <Heading
-                        fontSize="2xl"
-                        paddingBottom={2}
-                        borderBottom="1px solid"
-                        borderColor="gray.900"
-                      >
-                        {header.title}
-                      </Heading>
+                      <Heading fontSize="2xl">{header.title}</Heading>
                     </GridItem>
                   );
                 }
